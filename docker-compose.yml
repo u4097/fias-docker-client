@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  react:
+    container_name: fias-client
+    build: .
+    image: fias/fias-client
+    volumes:
+      - '/node_modules'
+    ports:
+      - "3000:3000"
+      - "35729:35729"
+    networks:
+      - es_elastic
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+networks:
+  es_elastic:
+    external: true
